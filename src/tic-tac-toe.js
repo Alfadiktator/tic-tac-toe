@@ -12,6 +12,7 @@ class TicTacToe {
     }
 
     nextTurn(rowIndex, columnIndex) {
+    if(this.field[rowIndex][columnIndex]==null){
         this.field[rowIndex][columnIndex]=this.symbol;
         if(this.symbol=='x'){
             this.symbol='o';
@@ -19,6 +20,7 @@ class TicTacToe {
         else{
             this.symbol='x';
         }
+    }
     }
 
     isFinished() {
@@ -30,17 +32,17 @@ class TicTacToe {
     getWinner() {
         var a=this.field;
         for(var i=0;i<3;++i){
-            if(a[i][0]==a[i][1] && a[i][1]==a[i][2]){
+            if(a[i][0]==a[i][1] && a[i][1]==a[i][2] && a[i][1]!=null){
                 return a[i][0];
             }
-            if(a[0][i]==a[1][i] && a[1][i]==a[2][i]){
-                return a[i][0];
+            if(a[0][i]==a[1][i] && a[1][i]==a[2][i]&&a[1][i]!=null){
+                return a[0][i];
             }
         }
-        if(a[0][0]==a[1][1] && a[1][1]==a[2][2]){
+        if(a[0][0]==a[1][1] && a[1][1]==a[2][2]&&a[1][1]!=null){
             return a[0][0];
         }
-        if(a[0][2]==a[1][1] && a[1][1]==a[2][0]){
+        if(a[0][2]==a[1][1] && a[1][1]==a[2][0]&&a[1][1]!=null){
             return a[1][1];
         }
         return null;
@@ -76,3 +78,6 @@ class TicTacToe {
         console.log();
     }
 }
+
+
+module.exports = TicTacToe;
