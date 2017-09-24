@@ -3,12 +3,12 @@ class TicTacToe {
         this.field=[];
         this.symbol='x';
         for(var i=0;i<3;++i){
-            this.field.push([]);
+            this.field.push([null,null,null]);
         }
     }
 
     getCurrentPlayerSymbol() {
-            return this.symbol;
+            return (this.symbol).toString();
     }
 
     nextTurn(rowIndex, columnIndex) {
@@ -22,7 +22,7 @@ class TicTacToe {
     }
 
     isFinished() {
-        if(getWinner()!=null || isDraw())
+        if((this.getWinner()!=null) || (this.isDraw()))
             return true;
         return false;
     }
@@ -47,29 +47,32 @@ class TicTacToe {
     }
 
     noMoreTurns() {
-            var i=1;
             for(var i=0;i<3;++i){
                 for(var j=0;j<3;++j){
                     if(this.field[i][j]==null){
-                        i=0;
+                        return false;
                     }
                 }
             }
-        if(i==1){
             return true;
-        }
-        return false;
     }
 
     isDraw() {
-            if(noMoreTurns()==false && getWinner()==null)
+            if((this.noMoreTurns()==true )&& (this.getWinner()==null)){
                 return true;
-            return false;
+            }
+        return false;
     }
 
     getFieldValue(rowIndex, colIndex) {
         return this.field[rowIndex][colIndex];
     }
+    getDraw(){
+        var a=this.field;
+        console.log();
+        for(var i=0;i<3;i++){
+            console.log(a[i][0]+' '+a[i][1]+' '+a[i][2]);
+        }
+        console.log();
+    }
 }
-
-module.exports = TicTacToe;
